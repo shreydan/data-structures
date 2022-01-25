@@ -34,7 +34,7 @@ node *newNode(int value) {
 
     if(new_node == NULL) {
         printf("Memory Error!\n");
-        exit(0);
+        exit(1);
     }
 
     new_node->value = value;
