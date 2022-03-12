@@ -32,14 +32,11 @@ typedef struct node {
 node *newNode(int value) {
     node *new_node = malloc(sizeof(node));
 
-    if(new_node == NULL) {
-        printf("Memory Error!\n");
-        exit(1);
+    if(new_node != NULL) {
+        new_node->value = value;
+        new_node->left = NULL;
+        new_node->right = NULL;
     }
-
-    new_node->value = value;
-    new_node->left = NULL;
-    new_node->right = NULL;
 
     return new_node;
 }

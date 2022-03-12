@@ -63,8 +63,8 @@ class LinkedList {
     }
 
     int deleteNode(int position) {
-        // if position = n : delete nth node, includes 1st node
-        // if position = -1 : delete last node
+        // if position = 1 : delete first node
+        // if position = n : delete nth node
 
         if (head == NULL) {
             cout << "empty list" << endl;
