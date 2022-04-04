@@ -66,6 +66,14 @@ class Graph {
             }
         }
     }
+
+    ~Graph() {
+        delete[] vertexList;
+        for (int row = 0; row < vertices; row++) {
+            delete[] adjMatrix[row];
+        }
+        // delete[] adjMatrix; -- not working idk why
+    }
 };
 
 int main() {
