@@ -1,41 +1,87 @@
 class LinkedList:
-    class ListNode:
-        def __init__(self, val=0, next=None) -> None:
+
+    class Node:
+        def __init__(self, val=0, next=None):
             self.val = val
             self.next = next
     
     def __init__(self):
+        self.length = 0
         self.head = None
-
-    def add(self, val):
-        node = self.ListNode(val)
-        if self.head is None:
-            self.head = node
-            node.next = None
-        else:
-            temp = self.head
-            while temp.next is not None:
-                temp = temp.next
-            temp.next = node
-    
+        
     def traverse(self):
         temp = self.head
-        while temp is not None:
-            print(f"{temp.val} ->", end=' ')
+        while temp != None:
+            print(temp.val)
             temp = temp.next
-        print("[X]")
+        
 
+    def get(self, index: int) -> int:
+        if index > self.length - 1 or index < 0:
+            return -1
+        
+        temp = self.head
+        while index != 0:
+            temp = temp.next
+            index -= 1
+            
+        if temp is not None:
+            return temp.val
+        else:
+            return -1
 
+    def addAtHead(self, val: int) -> None:
+        node = self.Node(val)
+        node.next = self.head
+        self.head = node
+        
+        self.length += 1
 
-l1 = LinkedList()
-l1.add(2)
-l1.add(4)
-l1.add(3)
+    def addAtTail(self, val: int) -> None:
+        if self.head is None:
+            self.addAtHead(val)
+        else:
+            node = self.Node(val) 
+            temp = self.head
+            while temp.next != None:
+                temp = temp.next
+            temp.next = node
+            node.next = None
+            
+        self.length +=1
+            
 
-l2 = LinkedList()
-l2.add(5)
-l2.add(6)
-l2.add(4)
+    def addAtIndex(self, index: int, val: int) -> None:
+        if index == 0:
+            self.addAtHead(val)
+        elif index > self.length or index < 0:
+            return
+        elif index == self.length:
+            self.addAtTail(val)
+        else:
+            temp = self.head
+            while index != 1:
+                temp = temp.next
+                index -= 1
+            node = self.Node(val)
+            node.next = temp.next
+            temp.next = node
+            self.length += 1
+            
 
-l1.traverse()
-l2.traverse()
+    def deleteAtIndex(self, index: int) -> None:
+        prev = None
+        temp = self.head
+        
+        if index == 0:
+            self.head = self.head.next
+        elif index > self.length - 1 or index < 0:
+            return
+        else:
+            while index != 0:
+                prev = temp
+                temp = temp.next
+                index -= 1
+            prev.next = temp.next
+            
+        self.length -= 1
