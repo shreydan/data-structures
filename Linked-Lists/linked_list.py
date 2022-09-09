@@ -30,6 +30,19 @@ class LinkedList:
         else:
             return -1
 
+            
+    def reverse(self):
+        current = self.head
+        prev = None
+        while current is not None:
+            nextNode = current.next
+            current.next = prev
+            prev = current
+            current = nextNode
+        self.head = prev
+        
+
+
     def addAtHead(self, val: int) -> None:
         node = self.Node(val)
         node.next = self.head
